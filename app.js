@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const routes = require('./src/routes/crmRoutes');
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser'); 
 const app = express();
@@ -14,20 +15,22 @@ mongoose.connect(URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-  .then(() => { 
+.then(() => { 
     console.log('Successfully connected to MongoDB')
   })
   .catch((err) => { 
-  console.log('Could not connect to Mongodb:', err)
+    console.log('Could not connect to Mongodb:', err)
   })
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
-  extended: false
-}))
-
-// parse application/json
+  
+  // parse application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({
+    extended: false
+  }))
+  
+  // parse application/json
 app.use(bodyParser.json())
+
+routes(app);
 
 app.get('/', (req, res) => { 
   res.send('Hello App 4000')

@@ -1,10 +1,10 @@
 {
-  "name": "RESTful-API",
+  "name": "restful-api",
   "version": "1.0.0",
   "description": "RESTful-API",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon ./app.js --exec babel-node -e js"
   },
   "keywords": [
     "nodejs",
